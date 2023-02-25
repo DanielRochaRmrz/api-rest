@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('nombre_producto');
             $table->string('descripcion');
-            $table->double('unidad_medida');
+            $table->string('unidad_medida');
             $table->double('precio_lista');
             $table->string('imagen');
             $table->integer('estatus_activo');
