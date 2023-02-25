@@ -73,7 +73,7 @@ class MenuController extends Controller
         }
 
         //Buscamos el menu mediante el id_subcursal y generamos una colección
-        $menu = Menu::where('id_sucursal', $id_sucursal)->first();
+        $menu = Menu::where('id_sucursal', $id_sucursal)->get();
 
         //Si se obtuvo la información del menu, enviamos una respuesta, en formato JSON
         return response()->json([
