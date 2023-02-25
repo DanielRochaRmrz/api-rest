@@ -58,7 +58,8 @@ class MenuController extends Controller
         ], 201);
     }
 
-    public function showMenuByBranch($id_sucursal) {
+    public function showMenuByBranch($id_sucursal)
+    {
         //Validamos el formato del id del la sucursal
         $validateid = Validator::make(['id_sucursal' => $id_sucursal], [
             'id_sucursal' => 'required|string|exists:menus,id_sucursal'
@@ -73,7 +74,22 @@ class MenuController extends Controller
         }
 
         //Buscamos el menu mediante el id_subcursal y generamos una colección
-        $menu = Menu::where('id_sucursal', $id_sucursal)->get();
+        // $menu = Menu::where('id_sucursal', $id_sucursal)->get();
+        $menu = Menu::select(
+            "menus.id",
+            "menus.nombre_menu",
+            "menus.descripcion",
+            "menus.prioridad",
+            "menus.imagen",
+            "menus.estatus_activo",
+            "menus.estatus_borrado",
+            "menus.estatus_borrado",
+            "menus.id_sucursal",
+            "submenus.id as submenu_id"
+        )
+            ->join("submenus", "submenus.menu_id", "=", "menus.id")
+            ->get()
+            ->toArray();
 
         //Si se obtuvo la información del menu, enviamos una respuesta, en formato JSON
         return response()->json([
