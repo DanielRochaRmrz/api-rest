@@ -69,7 +69,7 @@ class ProductController extends Controller
         }
 
         //Buscamos el submenu mediante el submenu_id y generamos una colección
-        $product = Product::where('submenu_id', $submenu_id)->first();
+        $product = Product::where('submenu_id', $submenu_id)->get();
 
         //Si se obtuvo la información del submenu, enviamos una respuesta, en formato JSON
         return response()->json([

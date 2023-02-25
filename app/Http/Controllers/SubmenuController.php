@@ -69,7 +69,7 @@ class SubmenuController extends Controller
         }
 
         //Buscamos el submenu mediante el menu_id y generamos una colección
-        $submenu = Submenu::where('menu_id', $menu_id)->first();
+        $submenu = Submenu::where('menu_id', $menu_id)->get();
 
         //Si se obtuvo la información del submenu, enviamos una respuesta, en formato JSON
         return response()->json([
