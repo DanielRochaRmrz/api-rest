@@ -88,6 +88,7 @@ class MenuController extends Controller
             "submenus.id as submenu_id"
         )
             ->join("submenus", "submenus.menu_id", "=", "menus.id")
+            ->where("menus.id_sucursal", $id_sucursal)
             ->get()
             ->toArray();
 
